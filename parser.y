@@ -30,7 +30,7 @@ list: /* nothing */
 instr: alu_instr REG COMMA REG COMMA REG { alu_instr($1, $2, $4, $6); }
      ;
 
-alu_instr: ADD { $$ = $1; }
+alu_instr: ADD
          ;
 
 lable: IDENTIFIER COLON
