@@ -16,7 +16,6 @@
 (?i:S1)                         { yylval.num = 9; return REG; }
 (?i:S([2-9]|10|11))             { yylval.num = 16 + atoi(yytext + 1); return REG; }
 
-
 :                       { return COLON; }
 ,                       { return COMMA; }
 ;.*                     {}

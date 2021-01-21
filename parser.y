@@ -1,12 +1,10 @@
 %{
+    // Bison does not decleare this function properly
+    int yylex();
 
-// Bison does not decleare this function properly
-int yylex();
-
-#include "../main.h"
-#include "../instr.h"
-#include "parser.h"
-
+    #include "../main.h"
+    #include "../instr.h"
+    #include "parser.h"
 %}
 
 %union {
