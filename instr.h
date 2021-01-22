@@ -5,13 +5,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "bin/parser.h"
+#include "AST.h"
+#include "bin/parser.tab.h"
 
-void alu_instr(yytoken_kind_t instr, int xD, int xL, int xR);
+instr_t* instr_alu(yytoken_kind_t instr, int rd, int rs1, int rs2);
 
-struct instr {
-    unsigned char* data;
-};
-typedef struct instr instr_t;
 
 #endif /* _INSTR_H */

@@ -17,7 +17,7 @@ bin:
 	mkdir -p bin
 
 bin/%.tab.c: %.y bin
-	bison -o $@ $< --defines=$(<:%.y=bin/%.h)
+	bison -o $@ $< --defines=$(<:%.y=bin/%.tab.h)
 
 bin/%.yy.c: %.l bin
 	flex -o $@ $<

@@ -3,7 +3,7 @@
 
 %{
     #include <string.h>
-    #include "parser.h"
+    #include "parser.tab.h"
     #include "../main.h"
 %}
 
@@ -23,5 +23,5 @@
 
 [a-zA-Z][a-zA-Z0-9_]*   { yylval.str = strdup(yytext); return IDENTIFIER; }
 
-[ \n\t\r]+              {}
+[ \t\r]+                {}
 .                       { printf("Failed to parse char: '%c'\n", yytext[0]); }
