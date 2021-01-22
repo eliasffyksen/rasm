@@ -9,6 +9,6 @@
 extern int line_number;
 extern int debug;
 void yyerror();
-void add_instr(instr_t* instr);
+void add_instr(instr_t *instr);
 
 #endif

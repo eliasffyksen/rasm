@@ -45,10 +45,13 @@ instr_t *instr_R_type(instr_codes_t instr_codes, int rd, int rs1, int rs2)
 
 instr_t *instr_I_type(instr_codes_t instr_codes, int rd, int rs1, int immi)
 {
-    if (immi > 2047) {
+    if (immi > 2047)
+    {
         printf("ERROR ON LINE %d: immidiate value can not be more then 2047\n", line_number);
         exit(1);
-    } else if (immi < -2048) {
+    }
+    else if (immi < -2048)
+    {
         printf("ERROR ON LINE %d: immidiate value can not be less then -2048\n", line_number);
         exit(1);
     }
@@ -65,10 +68,13 @@ instr_t *instr_I_type(instr_codes_t instr_codes, int rd, int rs1, int immi)
 
 instr_t *instr_I_SHAMT_type(instr_codes_t instr_codes, int rd, int rs1, int immi)
 {
-    if (immi > 31) {
+    if (immi > 31)
+    {
         printf("ERROR ON LINE %d: immidiate shamt for shifts can not be more then 31", line_number);
         exit(1);
-    } else if (immi < 0) {
+    }
+    else if (immi < 0)
+    {
         printf("ERROR ON LINE %d: immidiate shamt for shifts can not be less then 0", line_number);
         exit(1);
     }
