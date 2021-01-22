@@ -11,7 +11,7 @@
 
 (?i:add)                { yylval.token = ADD; return ADD; }
 
-(?i:x([0-9]|[1-2][0-9]|3[0-2])) { yylval.num = atoi(yytext + 1); return REG; }
+(?i:x([0-9]|[1-2][0-9]|3[0-1])) { yylval.num = atoi(yytext + 1); return REG; }
 (?i:S0)                         { yylval.num = 8; return REG; }
 (?i:S1)                         { yylval.num = 9; return REG; }
 (?i:S([2-9]|10|11))             { yylval.num = 16 + atoi(yytext + 1); return REG; }
