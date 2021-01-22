@@ -49,9 +49,9 @@ slli s0, s1, 3
 
  - [x] Registers and register ABI
  - [x] ALU register-register instructions
- - [ ] ***BLOCKED*** ALU Immidiate instructions
+ - [x] ALU Immidiate instructions
  - [x] Basic instruction implementation with decimal numbers
- - [ ] ***BLOCKED*** Allow hex numbers
+ - [x] Allow hex numbers
  - [x] Immidiate validation
  - [ ] ***DOING*** Conditional branch instructions
  - [ ] Upper immediate instructions

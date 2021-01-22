@@ -18,7 +18,7 @@
     int num;
 }
 
-%token NEW_LINE COLON COMMA
+%token NEW_LINE COLON COMMA NEG
 %token <instr_codes> R_TYPE I_TYPE I_SHAMT_TYPE
 %token <num> REG NUM
 %token <str> IDENTIFIER
@@ -39,4 +39,5 @@ instr: R_TYPE REG COMMA REG COMMA REG { $$ = instr_R_type($1, $2, $4, $6); }
      ;
 
 num: NUM
+   | NEG NUM { $$ = -$2; };
    ;

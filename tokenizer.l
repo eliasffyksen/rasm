@@ -45,20 +45,23 @@ ra      { yylval.num = 1; return REG; } // Call return address
 sp      { yylval.num = 2; return REG; } // Stack pointer
 gp      { yylval.num = 3; return REG; } // Global pointer
 tp      { yylval.num = 4; return REG; } // Thread pointer
-(?i:x([0-9]|[1-2][0-9]|3[0-1])) { yylval.num = atoi(yytext + 1); return REG; }      // X-prefix
-(?i:t[0-2])                     { yylval.num = 5 + atoi(yytext + 1); return REG;}   // Temporary register 0-2
-(?i:t[3-6])                     { yylval.num = 25 + atoi(yytext + 1); return REG;}  // Temporary register 3-6
-(?i:S[0-1])                     { yylval.num = 8 + atoi(yytext + 1); return REG; }  // Saved register 0-1
-(?i:S([2-9]|1[0-1]))            { yylval.num = 16 + atoi(yytext + 1); return REG; } // Saved register 2-11
-(?i:A[0-7])                     { yylval.num = 10 + atoi(yytext + 1); return REG; } // Function argument 0-7
+(?i:x([0-9]|[1-2][0-9]|3[0-1])) { yylval.num = atoi(yytext + 1);        return REG; } // X-prefix
+(?i:t[0-2])                     { yylval.num = 5 + atoi(yytext + 1);    return REG; } // Temporary register 0-2
+(?i:t[3-6])                     { yylval.num = 25 + atoi(yytext + 1);   return REG; } // Temporary register 3-6
+(?i:S[0-1])                     { yylval.num = 8 + atoi(yytext + 1);    return REG; } // Saved register 0-1
+(?i:S([2-9]|1[0-1]))            { yylval.num = 16 + atoi(yytext + 1);   return REG; } // Saved register 2-11
+(?i:A[0-7])                     { yylval.num = 10 + atoi(yytext + 1);   return REG; } // Function argument 0-7
 
+;.*                     {} // Comments
 :                       { return COLON; }
 ,                       { return COMMA; }
-;.*                     {}
 \n                      { return NEW_LINE; }
 
-[a-zA-Z][a-zA-Z0-9_]*   { yylval.str = strdup(yytext); return IDENTIFIER; }
--?[0-9]+                { yylval.num = atoi(yytext); return NUM; };
+[a-zA-Z][a-zA-Z0-9_]*   { yylval.str = strdup(yytext); return IDENTIFIER; } // Accept identifiers and lables
+
+-               { return NEG; } // Negate number
+[0-9]+          { yylval.num = atoi(yytext);                return NUM; } // Accept hex numbers
+0x[0-9a-fA-F]+  { yylval.num = strtol(yytext, NULL, 16);    return NUM; } // Accept decimal numbers
 
 [ \t\r]+                {}
 .                       { printf("Failed to parse char: '%c'\n", yytext[0]); }
