@@ -1,5 +1,6 @@
 
 #include "main.h"
+#include "instr.h"
 
 int main(int argc, char **argv) {
     line_number = 1;

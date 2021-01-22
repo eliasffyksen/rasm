@@ -27,7 +27,7 @@ list: /* nothing */
     | list NEW_LINE { line_number++; }
     ;
 
-instr: alu_instr REG COMMA REG COMMA REG { alu_instr($1, $2, $4, $6); }
+instr: alu_instr REG COMMA REG COMMA REG { instr_alu($1, $2, $4, $6); }
      ;
 
 alu_instr: ADD
