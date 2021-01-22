@@ -7,6 +7,7 @@
 
 #include "AST.h"
 #include "bin/parser.tab.h"
+#include "main.h"
 
 instr_t* instr_R_type(instr_codes_t instr_codes, int rd, int rs1, int rs2);
 instr_t* instr_I_type(instr_codes_t instr_codes, int rd, int rs1, int immi);

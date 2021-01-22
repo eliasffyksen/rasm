@@ -52,7 +52,7 @@ slli s0, s1, 3
  - [ ] ***BLOCKED*** ALU Immidiate instructions
  - [x] Basic instruction implementation with decimal numbers
  - [ ] ***BLOCKED*** Allow hex numbers
- - [ ] ***BLOCKED*** Immidiate validation and sign correction
+ - [x] Immidiate validation
  - [ ] ***DOING*** Conditional branch instructions
  - [ ] Upper immediate instructions
  - [ ] Unconditional jumps
