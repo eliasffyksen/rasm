@@ -34,11 +34,24 @@ instr_t *instr_R_type(instr_codes_t instr_codes, int rd, int rs1, int rs2)
 {
     instr_t *instr = malloc(sizeof(instr_t));
     instr->data = calloc(4, sizeof(unsigned char));
-    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
-    write_binary_data(instr->data, 11, 7, rd);
-    write_binary_data(instr->data, 14, 12, instr_codes.funct3);
-    write_binary_data(instr->data, 19, 15, rs1);
-    write_binary_data(instr->data, 24, 20, rs2);
     write_binary_data(instr->data, 31, 25, instr_codes.funct7);
+    write_binary_data(instr->data, 24, 20, rs2);
+    write_binary_data(instr->data, 19, 15, rs1);
+    write_binary_data(instr->data, 14, 12, instr_codes.funct3);
+    write_binary_data(instr->data, 11, 7, rd);
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
+    return instr;
+}
+
+instr_t *instr_I_type(instr_codes_t instr_codes, int rd, int rs1, int immid)
+{
+    /* TODO: Convert and check size of immidiate */
+    instr_t *instr = malloc(sizeof(instr_t));
+    instr->data = calloc(4, sizeof(unsigned char));
+    write_binary_data(instr->data, 31, 20, immid);
+    write_binary_data(instr->data, 19, 15, rs1);
+    write_binary_data(instr->data, 14, 12, instr_codes.funct3);
+    write_binary_data(instr->data, 11, 7, rd);
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
     return instr;
 }

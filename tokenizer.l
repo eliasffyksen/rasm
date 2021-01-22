@@ -20,6 +20,13 @@
 (?i:OR)     { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b110, .funct7 = 0b0000000}; return R_TYPE; }
 (?i:AND)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b111, .funct7 = 0b0000000}; return R_TYPE; }
 
+(?i:ADDI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b000 }; return I_TYPE; }
+(?i:SLTI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b010 }; return I_TYPE; }
+(?i:SLTIU)  { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b011 }; return I_TYPE; }
+(?i:XORI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b100 }; return I_TYPE; }
+(?i:ORI)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b110 }; return I_TYPE; }
+(?i:ANDI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b111 }; return I_TYPE; }
+
 (?i:x([0-9]|[1-2][0-9]|3[0-1])) { yylval.num = atoi(yytext + 1); return REG; }
 (?i:S0)                         { yylval.num = 8; return REG; }
 (?i:S1)                         { yylval.num = 9; return REG; }
@@ -31,6 +38,7 @@
 \n                      { return NEW_LINE; }
 
 [a-zA-Z][a-zA-Z0-9_]*   { yylval.str = strdup(yytext); return IDENTIFIER; }
+-?[0-9]+                { yylval.num = atoi(yytext); return NUM; };
 
 [ \t\r]+                {}
 .                       { printf("Failed to parse char: '%c'\n", yytext[0]); }

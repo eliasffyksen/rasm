@@ -19,11 +19,12 @@
 }
 
 %token NEW_LINE COLON COMMA
-%token <instr_codes> R_TYPE
-%token <num> REG
+%token <instr_codes> R_TYPE I_TYPE
+%token <num> REG NUM
 %token <str> IDENTIFIER
 
 %type <instr> instr
+%type <num> num
 
 %%
 
@@ -33,4 +34,8 @@ list: /* nothing */
     ;
 
 instr: R_TYPE REG COMMA REG COMMA REG { $$ = instr_R_type($1, $2, $4, $6); }
+     | I_TYPE REG COMMA REG COMMA num { $$ = instr_I_type($1, $2, $4, $6); }
      ;
+
+num: NUM
+   ;
