@@ -3,9 +3,14 @@
 
 instr_type_e get_instr_type(unsigned char* data) {
     unsigned int opcode = bin_to_int(data, 6, 0);
+    unsigned int funct3 = bin_to_int(data, 14, 12);
     switch (opcode) {
         case 0b0110011: return R_type;
-        case 0b0010011: return I_type;
+        case 0b0010011: switch (funct3) {
+            case 0b001:
+            case 0b101: return I_SHAMT_type;
+            default: return I_type;
+        }
         default: 
             puts("Unknown instruction type in get_instr_type!!!");
             exit(1);
@@ -57,10 +62,24 @@ void print_instr_I_type(unsigned char* data) {
     printf("+---------------+-----+--------+-----+---------+\n");
 }
 
+void print_instr_I_SHAMT_type(unsigned char* data) {
+    printf("+---------+-----+-----+--------+-----+---------+\n");
+    printf("|  funct7 |shamt| rs1 | funct3 |  rd |  opcode |\n");
+    printf("+---------+-----+-----+--------+-----+---------+\n");
+    printf("| "); print_bin(bin_to_int(data, 31, 25), 7); printf(" "); // funct7
+    printf("| 0x%02x", bin_to_int(data, 19, 15)); // shamt
+    printf("| x%02d ", bin_to_int(data, 19, 15)); // rs1
+    printf("|    "); print_bin(bin_to_int(data, 14, 12), 3); printf(" "); // funct3
+    printf("| x%02d ", bin_to_int(data, 11, 7)); // rd
+    printf("| "); print_bin(bin_to_int(data, 6, 0), 7); printf(" |\n"); // opcode
+    printf("+---------------+-----+--------+-----+---------+\n");
+}
+
 void print_instr(instr_t* instr) {
     switch (get_instr_type(instr->data)) {
         case R_type: print_instr_R_type(instr->data); break;
         case I_type: print_instr_I_type(instr->data); break;
+        case I_SHAMT_type: print_instr_I_SHAMT_type(instr->data); break;
         default:
             puts("Unknown instruction type in print_instr!!!");
             exit(1);

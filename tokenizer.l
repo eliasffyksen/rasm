@@ -9,16 +9,16 @@
 
 %%
 
-(?i:ADD)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b000, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:SUB)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b000, .funct7 = 0b0100000}; return R_TYPE; }
-(?i:SLL)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b001, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:SLT)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b010, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:SLTU)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b011, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:XOR)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b100, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:SRL)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b101, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:SRA)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b101, .funct7 = 0b0100000}; return R_TYPE; }
-(?i:OR)     { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b110, .funct7 = 0b0000000}; return R_TYPE; }
-(?i:AND)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b111, .funct7 = 0b0000000}; return R_TYPE; }
+(?i:ADD)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b000, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:SUB)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b000, .funct7 = 0b0100000 }; return R_TYPE; }
+(?i:SLL)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b001, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:SLT)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b010, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:SLTU)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b011, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:XOR)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b100, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:SRL)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b101, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:SRA)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b101, .funct7 = 0b0100000 }; return R_TYPE; }
+(?i:OR)     { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b110, .funct7 = 0b0000000 }; return R_TYPE; }
+(?i:AND)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b111, .funct7 = 0b0000000 }; return R_TYPE; }
 
 (?i:ADDI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b000 }; return I_TYPE; }
 (?i:SLTI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b010 }; return I_TYPE; }
@@ -26,6 +26,10 @@
 (?i:XORI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b100 }; return I_TYPE; }
 (?i:ORI)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b110 }; return I_TYPE; }
 (?i:ANDI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b111 }; return I_TYPE; }
+
+(?i:SLLI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b001, .funct7 = 0b0000000 }; return I_SHAMT_TYPE; }
+(?i:SRLI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b101, .funct7 = 0b0000000 }; return I_SHAMT_TYPE; }
+(?i:SRAI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b101, .funct7 = 0b0100000 }; return I_SHAMT_TYPE; }
 
 (?i:x([0-9]|[1-2][0-9]|3[0-1])) { yylval.num = atoi(yytext + 1); return REG; }
 (?i:S0)                         { yylval.num = 8; return REG; }
