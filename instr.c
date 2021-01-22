@@ -30,28 +30,15 @@ void write_binary_data(unsigned char *data, int to, int from, unsigned int val)
     }
 }
 
-instr_t *instr_R_type(int opcode, int funct3, int funct7, int rd, int rs1, int rs2)
+instr_t *instr_R_type(instr_codes_t instr_codes, int rd, int rs1, int rs2)
 {
     instr_t *instr = malloc(sizeof(instr_t));
     instr->data = calloc(4, sizeof(unsigned char));
-    write_binary_data(instr->data, 6, 0, opcode);
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
     write_binary_data(instr->data, 11, 7, rd);
-    write_binary_data(instr->data, 14, 12, funct3);
+    write_binary_data(instr->data, 14, 12, instr_codes.funct3);
     write_binary_data(instr->data, 19, 15, rs1);
     write_binary_data(instr->data, 24, 20, rs2);
-    write_binary_data(instr->data, 31, 25, funct7);
+    write_binary_data(instr->data, 31, 25, instr_codes.funct7);
     return instr;
-}
-
-instr_t *instr_alu(yytoken_kind_t instr, int rd, int rs1, int rs2)
-{
-    switch (instr)
-    {
-    case ADD:
-        return instr_R_type(0b0110011, 0b000, 0b0000000, rd, rs1, rs2);
-    default:
-        printf("Unimplemented ALU instr %d!!!", instr);
-        exit(1);
-    }
-    return (void *)0;
 }

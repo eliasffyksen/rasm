@@ -7,4 +7,9 @@ struct instr {
 };
 typedef struct instr instr_t;
 
+struct instr_codes {
+    int opcode, funct3, funct7;
+};
+typedef struct instr_codes instr_codes_t;
+
 #endif

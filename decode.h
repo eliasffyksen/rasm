@@ -8,7 +8,7 @@
 #include "AST.h"
 
 enum instr_type {
-    type_R
+    R_type
 };
 typedef enum instr_type instr_type_e;
 

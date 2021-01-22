@@ -9,7 +9,7 @@
 
 %%
 
-(?i:add)                { yylval.token = ADD; return ADD; }
+(?i:add)                { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110011, .funct3 = 0b000, .funct7 = 0b0000000}; return R_TYPE; }
 
 (?i:x([0-9]|[1-2][0-9]|3[0-1])) { yylval.num = atoi(yytext + 1); return REG; }
 (?i:S0)                         { yylval.num = 8; return REG; }

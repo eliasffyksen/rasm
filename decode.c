@@ -4,7 +4,7 @@
 instr_type_e get_instr_type(unsigned char* data) {
     unsigned int opcode = bin_to_int(data, 6, 0);
     switch (opcode) {
-        case 0b0110011: return type_R;
+        case 0b0110011: return R_type;
         default: 
             puts("Unknown instruction type in get_instr_type!!!");
             exit(1);
@@ -31,7 +31,7 @@ void print_bin(unsigned int val, int bits) {
     printf(val & 1 ? "1" : "0");
 }
 
-void print_instr_type_R(unsigned char* data) {
+void print_instr_R_type(unsigned char* data) {
     printf("+---------+-----+-----+--------+-----+---------+\n");
     printf("|  funct7 | rs2 | rs1 | funct3 |  rd |  opcode |\n");
     printf("+---------+-----+-----+--------+-----+---------+\n");
@@ -46,7 +46,7 @@ void print_instr_type_R(unsigned char* data) {
 
 void print_instr(instr_t* instr) {
     switch (get_instr_type(instr->data)) {
-        case type_R: print_instr_type_R(instr->data); break;
+        case R_type: print_instr_R_type(instr->data); break;
         default:
             puts("Unknown instruction type in print_instr!!!");
             exit(1);

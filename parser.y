@@ -12,18 +12,18 @@
 %}
 
 %union {
-    yytoken_kind_t token;
+    instr_codes_t instr_codes;
     instr_t* instr;
     char* str;
     int num;
 }
 
 %token NEW_LINE COLON COMMA
-%token <token> ADD
+%token <instr_codes> R_TYPE
 %token <num> REG
 %token <str> IDENTIFIER
 
-%type <token> alu_instr
+%type <instr_codes> alu_instr
 %type <instr> instr
 
 %%
@@ -33,11 +33,8 @@ list: /* nothing */
     | list NEW_LINE { line_number++; }
     ;
 
-instr: alu_instr REG COMMA REG COMMA REG { $$ = instr_alu($1, $2, $4, $6); }
+instr: R_TYPE REG COMMA REG COMMA REG { $$ = instr_R_type($1, $2, $4, $6); }
      ;
-
-alu_instr: ADD
-         ;
 
 lable: IDENTIFIER COLON
      ;
