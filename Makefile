@@ -6,7 +6,7 @@ OBJS:=$(OBJS:.l=.yy.o)
 OBJS:=$(OBJS:.y=.tab.o)
 OBJS:=$(OBJS:.c=.o)
 
-.PHONY: all bin/rasm clean
+.PHONY: all clean count
 
 all: bin/rasm
 
@@ -27,6 +27,9 @@ bin/%.o: bin/%.c bin
 
 bin/%.o: %.c bin
 	$(CC) -c -o $@ $<
+
+count:
+	cat *.h *.c *.l *.y | sed '/^\s*#/d;/^\s*$/d' | wc
 
 clean:
 	rm bin/*
