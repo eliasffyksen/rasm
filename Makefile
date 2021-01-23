@@ -13,19 +13,16 @@ all: bin/rasm
 bin/rasm: $(OBJS)
 	$(CC) -o $@ $^
 
-bin:
-	mkdir -p bin
-
-bin/%.tab.c: %.y bin
+bin/%.tab.c: %.y
 	bison -o $@ $< --defines=$(<:%.y=bin/%.tab.h)
 
-bin/%.yy.c: %.l bin
+bin/%.yy.c: %.l
 	flex -o $@ $<
 
-bin/%.o: bin/%.c bin
+bin/%.o: bin/%.c
 	$(CC) -c -o $@ $<
 
-bin/%.o: %.c bin
+bin/%.o: %.c
 	$(CC) -c -o $@ $<
 
 count:
