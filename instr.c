@@ -119,3 +119,24 @@ instr_t *instr_B_type(instr_codes_t instr_codes, int rs1, int rs2, int immi)
     write_binary_data(instr->data, 6, 0, instr_codes.opcode);
     return instr;
 }
+
+instr_t *instr_U_type(instr_codes_t instr_codes, int rd, int immi)
+{
+    if (immi > 1048575)
+    {
+        printf("ERROR ON LINE %d: upper immidiate value can not be more then 1048575\n", line_number);
+        exit(1);
+    }
+    else if (immi < -524288)
+    {
+        printf("ERROR ON LINE %d: upper immidiate value can not be less then -524288\n", line_number);
+        exit(1);
+    }
+
+    instr_t *instr = malloc(sizeof(instr_t));
+    instr->data = calloc(4, sizeof(unsigned char));
+    write_binary_data(instr->data, 31, 12, immi); // immidiate[31:12]
+    write_binary_data(instr->data, 11, 7, rd); // rd
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
+    return instr;
+}

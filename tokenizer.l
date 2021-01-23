@@ -46,6 +46,12 @@
 (?i:BLTU)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b110 }; return B_TYPE; }
 (?i:BGEU)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b111 }; return B_TYPE; }
 
+    /* --------------- UPPER IMMIDIATE INSTRUCTIONS --------------- */
+
+(?i:LUI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110111 }; return U_TYPE; }
+(?i:AUIPC) { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010111 }; return U_TYPE; }
+
+
     /* --------------- REGISTERS ----------------- */
 
 zero    { yylval.num = 0; return REG; } // Always zero

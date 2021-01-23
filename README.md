@@ -54,7 +54,7 @@ slli s0, s1, 3
  - [x] Allow hex numbers
  - [x] Immidiate validation
  - [x] Conditional branch instructions
- - [ ] Upper immediate instructions
+ - [x] Upper immediate instructions
  - [ ] Unconditional jumps
  - [ ] Indirect jump instruction
  - [ ] Load and store instruction
