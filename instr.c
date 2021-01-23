@@ -88,3 +88,34 @@ instr_t *instr_I_SHAMT_type(instr_codes_t instr_codes, int rd, int rs1, int immi
     write_binary_data(instr->data, 6, 0, instr_codes.opcode);
     return instr;
 }
+
+instr_t *instr_B_type(instr_codes_t instr_codes, int rs1, int rs2, int immi)
+{
+    if (immi > 4095)
+    {
+        printf("ERROR ON LINE %d: immidiate value can not be more then 4095\n", line_number);
+        exit(1);
+    }
+    else if (immi < -4096)
+    {
+        printf("ERROR ON LINE %d: immidiate value can not be less then -4096\n", line_number);
+        exit(1);
+    }
+    else if (immi % 2 != 0)
+    {
+        printf("ERROR ON LINE %d: immidiate branch value must be 16bit align (i.e. devisible by 2)\n", line_number);
+        exit(1);
+    }
+
+    instr_t *instr = malloc(sizeof(instr_t));
+    instr->data = calloc(4, sizeof(unsigned char));
+    write_binary_data(instr->data, 31, 31, immi >> 12);
+    write_binary_data(instr->data, 30, 25, immi >> 5);
+    write_binary_data(instr->data, 24, 20, rs2);
+    write_binary_data(instr->data, 19, 15, rs1);
+    write_binary_data(instr->data, 14, 12, instr_codes.funct3);
+    write_binary_data(instr->data, 11, 8, immi >> 1);
+    write_binary_data(instr->data, 7, 7, immi >> 11);
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
+    return instr;
+}

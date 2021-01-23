@@ -53,7 +53,7 @@ slli s0, s1, 3
  - [x] Basic instruction implementation with decimal numbers
  - [x] Allow hex numbers
  - [x] Immidiate validation
- - [ ] ***DOING*** Conditional branch instructions
+ - [x] Conditional branch instructions
  - [ ] Upper immediate instructions
  - [ ] Unconditional jumps
  - [ ] Indirect jump instruction

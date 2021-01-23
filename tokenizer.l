@@ -37,6 +37,14 @@
 (?i:SRLI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b101, .funct7 = 0b0000000 }; return I_SHAMT_TYPE; }
 (?i:SRAI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010011, .funct3 = 0b101, .funct7 = 0b0100000 }; return I_SHAMT_TYPE; }
 
+    /* --------------- CONDITIONAL BRANCH INSTRUCTIONS ----------------- */
+
+(?i:BEQ)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b000 }; return B_TYPE; }
+(?i:BNE)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b001 }; return B_TYPE; }
+(?i:BLT)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b100 }; return B_TYPE; }
+(?i:BGE)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b101 }; return B_TYPE; }
+(?i:BLTU)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b110 }; return B_TYPE; }
+(?i:BGEU)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100011, .funct3 = 0b111 }; return B_TYPE; }
 
     /* --------------- REGISTERS ----------------- */
 
