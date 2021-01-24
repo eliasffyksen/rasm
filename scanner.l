@@ -55,6 +55,10 @@
 
 (?i:JAL)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1101111 }; return J_TYPE; }
 
+    /* --------------- INDIRECT JUMP INSTRUCTIONS --------------- */
+
+(?i:JALR)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1100111, .funct3 = 0b000 }; return I_TYPE; }
+
     /* --------------- REGISTERS ----------------- */
 
 zero    { yylval.num = 0; return REG; } // Always zero

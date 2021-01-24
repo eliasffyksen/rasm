@@ -56,7 +56,7 @@ slli s0, s1, 3
  - [x] Conditional branch instructions
  - [x] Upper immediate instructions
  - [x] Unconditional jumps
- - [ ] Indirect jump instruction
+ - [x] Indirect jump instruction
  - [ ] Load and store instruction
  - [ ] Memory ordering instructions
 
