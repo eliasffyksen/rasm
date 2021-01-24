@@ -51,6 +51,9 @@
 (?i:LUI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110111 }; return U_TYPE; }
 (?i:AUIPC) { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010111 }; return U_TYPE; }
 
+    /* --------------- UNCONDITIONAL JUMP INSTRUCTIONS --------------- */
+
+(?i:JAL)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b1101111 }; return J_TYPE; }
 
     /* --------------- REGISTERS ----------------- */
 

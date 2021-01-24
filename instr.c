@@ -140,3 +140,32 @@ instr_t *instr_U_type(instr_codes_t instr_codes, int rd, int immi)
     write_binary_data(instr->data, 6, 0, instr_codes.opcode);
     return instr;
 }
+
+instr_t *instr_J_type(instr_codes_t instr_codes, int rd, int immi)
+{
+    if (immi > 1048574)
+    {
+        printf("ERROR ON LINE %d: upper immidiate value can not be more then 1048575\n", line_number);
+        exit(1);
+    }
+    else if (immi < -1048576)
+    {
+        printf("ERROR ON LINE %d: upper immidiate value can not be less then -1048576\n", line_number);
+        exit(1);
+    }
+    else if (immi % 2 != 0)
+    {
+        printf("ERROR ON LINE %d: immidiate jump value must be 16bit align (i.e. devisible by 2)\n", line_number);
+        exit(1);
+    }
+
+    instr_t *instr = malloc(sizeof(instr_t));
+    instr->data = calloc(4, sizeof(unsigned char));
+    write_binary_data(instr->data, 31, 31, immi >> 20); // immidiate[20]
+    write_binary_data(instr->data, 30, 21, immi >> 1); // immidiate[10:1]
+    write_binary_data(instr->data, 20, 20, immi >> 11); // immidiate[11]
+    write_binary_data(instr->data, 19, 12, immi >> 12); // immidiate[19:12]
+    write_binary_data(instr->data, 11, 7, rd); // rd
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode); // opcode
+    return instr;
+}

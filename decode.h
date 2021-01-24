@@ -13,7 +13,8 @@ enum instr_type
     I_type,
     I_SHAMT_type,
     B_type,
-    U_type
+    U_type,
+    J_type
 };
 typedef enum instr_type instr_type_e;
 

@@ -19,7 +19,7 @@
 }
 
 %token NEW_LINE COLON COMMA NEG
-%token <instr_codes> R_TYPE I_TYPE I_SHAMT_TYPE B_TYPE U_TYPE
+%token <instr_codes> R_TYPE I_TYPE I_SHAMT_TYPE B_TYPE U_TYPE J_TYPE
 %token <num> REG NUM
 %token <str> IDENTIFIER
 
@@ -38,6 +38,7 @@ instr: R_TYPE REG COMMA REG COMMA REG { $$ = instr_R_type($1, $2, $4, $6); }
      | I_SHAMT_TYPE REG COMMA REG COMMA num { $$ = instr_I_SHAMT_type($1, $2, $4, $6); }
      | B_TYPE REG COMMA REG COMMA num { $$ = instr_B_type($1, $2, $4, $6); }
      | U_TYPE REG COMMA num { $$ = instr_U_type($1, $2, $4); }
+     | J_TYPE REG COMMA num { $$ = instr_J_type($1, $2, $4); }
      ;
 
 num: NUM

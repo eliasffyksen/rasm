@@ -23,6 +23,8 @@ instr_type_e get_instr_type(unsigned char *data)
     case 0b0110111:
     case 0b0010111:
         return U_type;
+    case 0b1101111:
+        return J_type;
     default:
         puts("Unknown instruction type in get_instr_type!!!");
         exit(1);
@@ -144,6 +146,24 @@ void print_instr_U_type(unsigned char *data) {
     printf("+------------------------------+-----+---------+\n");
 }
 
+void print_instr_J_type(unsigned char *data) {
+    printf("+------------------------------+-----+---------+\n");
+    printf("|       immi[20|10:1|11|19:12] |  rd |  opcode |\n");
+    printf("+------------------------------+-----+---------+\n");
+    printf("|      ");
+    print_bin(bin_to_int(data, 31, 31), 1); // immi[20]
+    printf(" ");
+    print_bin(bin_to_int(data, 30, 21), 10); // immi[10:1]
+    printf(" ");
+    print_bin(bin_to_int(data, 20, 20), 1); // immi[11]
+    printf(" ");
+    print_bin(bin_to_int(data, 19, 12), 8); // immi[19:12]
+    printf(" | x%02d | ", bin_to_int(data, 11, 7));
+    print_bin(bin_to_int(data, 6, 0), 7); // opcode
+    printf(" |\n");
+    printf("+------------------------------+-----+---------+\n");
+}
+
 void print_instr(instr_t *instr)
 {
     switch (get_instr_type(instr->data))
@@ -162,6 +182,9 @@ void print_instr(instr_t *instr)
         break;
     case U_type:
         print_instr_U_type(instr->data);
+        break;
+    case J_type:
+        print_instr_J_type(instr->data);
         break;
     default:
         puts("Unknown instruction type in print_instr!!!");
