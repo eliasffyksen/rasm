@@ -83,7 +83,7 @@ slli s0, s1, 3
 
 ## Understanding the code base
 
-The instructions are defined in the `tokenizer.l`, and passes down options for op-code
+The instructions are defined in the `scanner.l`, and passes down options for op-code
 funct3, funct7, etc. And a token representing the instruction type (f.ex. R_TYPE).
 This means that you only need to write one line to implement a new instruction.
 
@@ -93,7 +93,7 @@ There should also be a entry in the `enum instr_type` in `decode.h`, a pretty pr
 `decode.c`, like `print_instr_R_type`, and a case should be added in both the `print_instr` and
 `get_instr_type` functions (also in `decode.c`).
 
-The registers and register ABI is also defined in `tokenizer.l`.
+The registers and register ABI is also defined in `scanner.l`.
 
 Further types data types are also defined in `AST.h`.
 

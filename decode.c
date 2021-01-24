@@ -139,9 +139,9 @@ void print_instr_U_type(unsigned char *data) {
     printf("|                  immi[31:12] |  rd |  opcode |\n");
     printf("+------------------------------+-----+---------+\n");
     printf("|         ");
-    print_bin(bin_to_int(data, 31, 12), 20);
-    printf(" | x%02d | ", bin_to_int(data, 11, 7));
-    print_bin(bin_to_int(data, 6, 0), 7);
+    print_bin(bin_to_int(data, 31, 12), 20); // immi[31:12]
+    printf(" | x%02d | ", bin_to_int(data, 11, 7)); // rd
+    print_bin(bin_to_int(data, 6, 0), 7); // opcode
     printf(" |\n");
     printf("+------------------------------+-----+---------+\n");
 }

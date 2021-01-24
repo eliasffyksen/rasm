@@ -26,7 +26,7 @@ bin/%.o: %.c
 	$(CC) -c -o $@ $<
 
 count:
-	cat *.h *.c *.l *.y | sed '/^\s*#/d;/^\s*$/d' | wc
+	cat *.h *.c *.l *.y | sed '/^\s*$$/d' | wc
 
 clean:
 	rm bin/*

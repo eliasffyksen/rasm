@@ -48,8 +48,8 @@
 
     /* --------------- UPPER IMMIDIATE INSTRUCTIONS --------------- */
 
-(?i:LUI)   { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110111 }; return U_TYPE; }
-(?i:AUIPC) { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010111 }; return U_TYPE; }
+(?i:LUI)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0110111 }; return U_TYPE; }
+(?i:AUIPC)  { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0010111 }; return U_TYPE; }
 
     /* --------------- UNCONDITIONAL JUMP INSTRUCTIONS --------------- */
 
