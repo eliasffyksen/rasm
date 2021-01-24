@@ -67,6 +67,12 @@
 (?i:LBU)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0000011, .funct3 = 0b100 }; return I_TYPE; }
 (?i:LHU)    { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0000011, .funct3 = 0b101 }; return I_TYPE; }
 
+    /* --------------- STORE INSTRUCTIONS --------------- */
+
+(?i:SB)     { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0100011, .funct3 = 0b000 }; return S_TYPE; }
+(?i:SH)     { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0100011, .funct3 = 0b001 }; return S_TYPE; }
+(?i:SW)     { yylval.instr_codes = (instr_codes_t){ .opcode = 0b0100011, .funct3 = 0b010 }; return S_TYPE; }
+
     /* --------------- REGISTERS ----------------- */
 
 zero    { yylval.num = 0; return REG; } // Always zero

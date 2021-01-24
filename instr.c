@@ -169,3 +169,27 @@ instr_t *instr_J_type(instr_codes_t instr_codes, int rd, int immi)
     write_binary_data(instr->data, 6, 0, instr_codes.opcode); // opcode
     return instr;
 }
+
+instr_t *instr_S_type(instr_codes_t instr_codes, int rs1, int immi, int rs2)
+{
+    if (immi > 2047)
+    {
+        printf("ERROR ON LINE %d: immidiate value can not be more then 2047\n", line_number);
+        exit(1);
+    }
+    else if (immi < -2048)
+    {
+        printf("ERROR ON LINE %d: immidiate value can not be less then -2048\n", line_number);
+        exit(1);
+    }
+
+    instr_t *instr = malloc(sizeof(instr_t));
+    instr->data = calloc(4, sizeof(unsigned char));
+    write_binary_data(instr->data, 31, 25, immi >> 5);
+    write_binary_data(instr->data, 24, 20, rs1);
+    write_binary_data(instr->data, 19, 15, rs2);
+    write_binary_data(instr->data, 14, 12, instr_codes.funct3);
+    write_binary_data(instr->data, 11, 7, immi);
+    write_binary_data(instr->data, 6, 0, instr_codes.opcode);
+    return instr;
+}
