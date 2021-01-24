@@ -19,6 +19,7 @@ instr_type_e get_instr_type(unsigned char *data)
             return I_type;
         }
     case 0b1100111:
+    case 0b0000011:
         return I_type;
     case 0b1100011:
         return B_type;
